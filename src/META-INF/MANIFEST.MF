@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Class-Path: catalina-tribes.jar jaspic-api.jar tomcat-util.jar tomcat-
+ coyote.jar Framewhorek.jar tomcat-jdbc.jar tomcat-api.jar tomcat-i18n
+ -fr.jar catalina-ha.jar catalina.jar tomcat-i18n-ko.jar tomcat-i18n-z
+ h-CN.jar tomcat-i18n-ja.jar websocket-api.jar tomcat-i18n-es.jar tomc
+ at-jni.jar jasper-el.jar el-api.jar annotations-api.jar tomcat-websoc
+ ket.jar tomcat-dbcp.jar servlet-api.jar tomcat-util-scan.jar jsp-api.
+ jar tomcat-i18n-de.jar tomcat-i18n-ru.jar jasper.jar catalina-ant.jar
+  ecj-4.6.3.jar catalina-storeconfig.jar mysql-connector-java-8.0.25.j
+ ar servlet-api.jar mysql-connector-java-8.0.25.jar
+Main-Class: 
+

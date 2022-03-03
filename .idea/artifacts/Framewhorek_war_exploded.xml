@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Framewhorek:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Framewhorek_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Framewhorek" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Framewhorek_jar" />
+        </element>
+      </element>
+      <element id="library" level="project" name="lib" />
+      <element id="javaee-facet-resources" facet="Framewhorek/web/Web2" />
+      <element id="javaee-facet-resources" facet="Framewhorek/web/Web" />
+      <element id="javaee-facet-resources" facet="Framewhorek/web/Web3" />
+    </root>
+  </artifact>
+</component>

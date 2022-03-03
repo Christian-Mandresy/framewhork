@@ -1,0 +1,37 @@
+<component name="libraryTable">
+  <library name="Framewhorek_jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/catalina-tribes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/jaspic-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-coyote.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/Framewhorek.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-jdbc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-i18n-fr.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/catalina-ha.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/catalina.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-i18n-ko.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-i18n-zh-CN.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-i18n-ja.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/websocket-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-i18n-es.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-jni.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/jasper-el.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/el-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/annotations-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-websocket.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-dbcp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-util-scan.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/jsp-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-i18n-de.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/tomcat-i18n-ru.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/jasper.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/catalina-ant.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/ecj-4.6.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Framewhorek_jar/catalina-storeconfig.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
