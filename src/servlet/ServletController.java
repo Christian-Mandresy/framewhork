@@ -10,16 +10,13 @@ import java.io.*;
 
 import static java.lang.Class.forName;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 import java.lang.reflect.*;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import javax.servlet.RequestDispatcher;
 
 import AccessClass.AccesFichier;
 import Annotation.*;
@@ -282,6 +279,10 @@ public class ServletController extends HttpServlet {
                         {
                             argument[p]=request.getSession();
                         }
+                        else if(parametre[p]== HttpServletRequest.class)
+                        {
+                            argument[p]=request;
+                        }
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -291,95 +292,98 @@ public class ServletController extends HttpServlet {
             }
             else
             {
-                int p=0;
-                for (Part part : request.getParts()) {
-                    String filename = getFilename(part);
+                Part[] part= request.getParts().toArray(new Part[0]);
+                int par=0;
+                int indarg=0;
+                for(int p=0;p<parametre.length;p++)
+                {
+                    String filename = getFilename(part[par]);
                     if (filename == null)
                     {
                         // Traiter les champs classiques ici (input type="text|radio|checkbox|etc", select, etc).
-                        String fieldname = part.getName();
-                        String fieldvalue = getValue(part);
+                        String fieldname = part[par].getName();
+                        String fieldvalue = getValue(part[par]);
 
                             /*
                             conversion des attributs au type d'argument du fonction
                             */
-                            try {
-                                if(TestsiNum(parametre[p])==true)
+                        try {
+                            if(TestsiNum(parametre[p])==true)
+                            {
+                                String nomConvert="";
+                                try {
+                                    nomConvert=Convert(parametre[p]);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                //Maka anle methode ParseInt.......
+                                //Argument anle fonction ParseInt donc string eto
+                                Class[] param=new Class[1];
+                                param[0]=nomConvert.getClass();
+                                String parse="";
+                                if(nomConvert.equals("Integer")==true)
                                 {
-                                    String nomConvert="";
-                                    try {
-                                        nomConvert=Convert(parametre[p]);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                    //Maka anle methode ParseInt.......
-                                    //Argument anle fonction ParseInt donc string eto
-                                    Class[] param=new Class[1];
-                                    param[0]=nomConvert.getClass();
-                                    String parse="";
-                                    if(nomConvert.equals("Integer")==true)
-                                    {
-                                        parse="parse"+"Int";
-                                    }
-                                    else
-                                    {
-                                        parse="parse"+nomConvert;
-                                    }
-                                    Class Nombre=Class.forName("java.lang."+nomConvert);
-                                    Method fonctConversion=Nombre.getMethod(parse,param);
-                                    Object[] args=new Object[2];
+                                    parse="parse"+"Int";
+                                }
+                                else
+                                {
+                                    parse="parse"+nomConvert;
+                                }
+                                Class Nombre=Class.forName("java.lang."+nomConvert);
+                                Method fonctConversion=Nombre.getMethod(parse,param);
+                                Object[] args=new Object[2];
 
-                                    //Parametre dans un formulaire
-                                    //appelle du fonction de conversion
+                                //Parametre dans un formulaire
+                                //appelle du fonction de conversion
 
-                                    if(getValue(part) =="")
-                                    {
-                                        args[0]="0";
-                                    }
-                                    else
-                                    {
-                                        args[0]=getValue(part);
-                                    }
-                                    //classe comme Integer,Float,......
-                                    Class[] typParamInteg=new Class[1];
-                                    typParamInteg[0]=String.class;
-                                    Constructor Intege=Nombre.getConstructor(typParamInteg);
-                                    Object Nbr=Intege.newInstance(args[0]);
-                                    argument[p]=Nbr;
-                                    p++;
-                                }
-                                else if ((parametre[p]==String.class)==true)
+                                if(getValue(part[par]) =="")
                                 {
-                                    if(getValue(part)=="")
-                                    {
-                                        argument[p]=null;
-                                        p++;
-                                    }
-                                    else
-                                    {
-                                        argument[p]=getValue(part);
-                                        p++;
-                                    }
+                                    args[0]="0";
                                 }
-                                else if(parametre[p]==Date.class)
+                                else
                                 {
-                                    SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-                                    String nom=getValue(part);
-                                    java.util.Date date=null;
-                                    if(nom.equals(""))
-                                    {
-                                        Date sqlndate=null;
-                                        argument[p]=sqlndate;
-                                        p++;
-                                    }
-                                    else
-                                    {
-                                        date =format.parse(nom);
-                                        Date sqlDate=new Date(date.getTime());
-                                        argument[p]=sqlDate;
-                                        p++;
-                                    }
+                                    args[0]=getValue(part[par]);
                                 }
+                                //classe comme Integer,Float,......
+                                Class[] typParamInteg=new Class[1];
+                                typParamInteg[0]=String.class;
+                                Constructor Intege=Nombre.getConstructor(typParamInteg);
+                                Object Nbr=Intege.newInstance(args[0]);
+                                argument[p]=Nbr;
+                                par++;
+                            }
+                            else if ((parametre[p]==String.class)==true)
+                            {
+                                if(getValue(part[par])=="")
+                                {
+                                    argument[p]=null;
+                                    par++;
+                                }
+                                else
+                                {
+                                    argument[p]=getValue(part[par]);
+                                    par++;
+                                }
+                            }
+                            else if(parametre[p]==Date.class)
+                            {
+                                SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+                                String nom=getValue(part[par]);
+                                java.util.Date date=null;
+                                if(nom.equals(""))
+                                {
+                                    Date sqlndate=null;
+                                    argument[p]=sqlndate;
+                                    par++;
+                                }
+                                else
+                                {
+                                    date =format.parse(nom);
+                                    Date sqlDate=new Date(date.getTime());
+                                    argument[p]=sqlDate;
+                                    par++;
+                                }
+                            }
                                 /*else if(parametre[p]== Part[].class)
                                 {
                                     Part[] listpart=new Part[request.getParts().size()];
@@ -390,31 +394,36 @@ public class ServletController extends HttpServlet {
                                     }
                                     argument[p]=listpart;
                                 }*/
-                                else if(parametre[p]== HttpSession.class)
-                                {
-                                    argument[p]=request.getSession();
-                                    p++;
-                                }
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            else if(parametre[p]== HttpSession.class)
+                            {
+                                argument[p]=request.getSession();
                             }
+                            else if(parametre[p].getSuperclass() == ServletRequest.class )
+                            {
+                                argument[p]=request;
+                                indarg=p;
+                            }
+                            indarg=p;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         // ... (traitement à faire)
                     } else if (!filename.isEmpty()) {
                         // Traiter les champs de type fichier (input type="file").
-                        String fieldname = part.getName();
+                        String fieldname = part[par].getName();
                         filename = filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.
-                        InputStream filecontent = part.getInputStream();
+                        InputStream filecontent = part[par].getInputStream();
+                        indarg=p;
                         // ... (traitement à faire)
                     }
                 }
                 Part[] listpart=new Part[request.getParts().size()];
                 int indice=0;
-                for (Part part : request.getParts()) {
-                    listpart[indice]=part;
+                for (Part party : request.getParts()) {
+                    listpart[indice]=party;
                     indice++;
                 }
-                argument[p]=listpart;
+                argument[indarg]=listpart;
             }
 
             if(argument.length!=0)
