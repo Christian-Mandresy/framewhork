@@ -10,6 +10,7 @@ import Utilitaire.FileUtil;
 import bas.*;
 import modeleview.ModelView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.IOException;
@@ -80,9 +81,9 @@ public class Test extends BdTable{
         valiny.put("Nomnombre",inty);
         FileUtil fileUtil=new FileUtil();
         valiny.put("NomFichier",fileUtil.extractAllName(parts));
-        String path="http://localhost:8080/Framewhorek_war_exploded/";
+        String path="";
         try {
-            fileUtil.uploadFile(path,parts);
+            fileUtil.uploadFile(parts);
         } catch (IOException e) {
             e.printStackTrace();
         }
